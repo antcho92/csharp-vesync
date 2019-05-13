@@ -58,16 +58,32 @@ namespace CSharpVesync
 
         public async Task TurnOn(string id)
         {
-            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "id/status/on"))
+            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "/status/on"))
                 .WithHeaders(GetHeaders())
                 .PutAsync(null);
         }
 
         public async Task TurnOff(string id)
         {
-            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "id/status/on"))
+            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "/status/on"))
                 .WithHeaders(GetHeaders())
                 .PutAsync(null);
+        }
+
+        public async Task<ConfigurationsResponse> GetConfig(string id)
+        {
+            return await (BaseUrl.AppendPathSegments("/v1/device/", id, "configurations"))
+                .WithHeaders(GetHeaders())
+                .GetAsync()
+                .ReceiveJson<ConfigurationsResponse>();
+        }
+
+        public async Task<DetailResponse> GetDetail(string id)
+        {
+            return await (BaseUrl.AppendPathSegments("/v1/device/", id, "detail"))
+                .WithHeaders(GetHeaders())
+                .GetAsync()
+                .ReceiveJson<DetailResponse>();
         }
 
         private async Task<Headers> GetHeaders()

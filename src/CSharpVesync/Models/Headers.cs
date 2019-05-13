@@ -5,9 +5,9 @@ namespace CSharpVesync.Models
     [DataContract]
     public class Headers
     {
-        [DataMember(Name="tk")]
+        [DataMember(Name = "tk")]
         public string Token { get; set; }
-        [DataMember(Name="accountid")]
+        [DataMember(Name = "accountid")]
         public string AccountId { get; set; }
     }
 }

@@ -5,19 +5,19 @@ namespace CSharpVesync.Models
     [DataContract]
     public class AccountResponse
     {
-        [DataMember(Name="tk")]
+        [DataMember(Name = "tk")]
         public string Token { get; set; }
-        [DataMember(Name="accountID")]
+        [DataMember(Name = "accountID")]
         public string AccountId { get; set; }
-        [DataMember(Name="nickName")]
+        [DataMember(Name = "nickName")]
         public string NickName { get; set; }
-        [DataMember(Name="avatarIcon")]
+        [DataMember(Name = "avatarIcon")]
         public string AvatarIcon { get; set; }
-        [DataMember(Name="userType")]
+        [DataMember(Name = "userType")]
         public int UserType { get; set; }
-        [DataMember(Name="acceptLanguage")]
+        [DataMember(Name = "acceptLanguage")]
         public string AcceptLanguage { get; set; }
-        [DataMember(Name="termsStatus")]
+        [DataMember(Name = "termsStatus")]
         public bool TermStatus { get; set; }
     }
 }

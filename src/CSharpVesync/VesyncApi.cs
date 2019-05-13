@@ -12,6 +12,7 @@ namespace CSharpVesync
     {
         private const string BaseUrl = "https://smartapi.vesync.com";
         private readonly VesyncApiConfiguration _config;
+        private AccountResponse _account = null;
 
         public VesyncApi(VesyncApiConfiguration config)
         {
@@ -47,10 +48,40 @@ namespace CSharpVesync
                 .ReceiveJson<AccountResponse>();
         }
 
-        public void GetDevices()
+        public async Task<DevicesResponse> GetDevices()
         {
-
+            return await (BaseUrl.AppendPathSegment("/vold/user/devices"))
+                .WithHeaders(GetHeaders())
+                .GetAsync()
+                .ReceiveJson<DevicesResponse>();
         }
 
+        public async Task TurnOn(string id)
+        {
+            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "id/status/on"))
+                .WithHeaders(GetHeaders())
+                .PutAsync(null);
+        }
+
+        public async Task TurnOff(string id)
+        {
+            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "id/status/on"))
+                .WithHeaders(GetHeaders())
+                .PutAsync(null);
+        }
+
+        private async Task<Headers> GetHeaders()
+        {
+            if (_account == null)
+            {
+                _account = await GetAccount();
+            }
+
+            return new Headers()
+            {
+                Token = _account.Token,
+                AccountId = _account.AccountId
+            };
+        }
     }
 }

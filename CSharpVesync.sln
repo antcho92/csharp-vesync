@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28902.138
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpVesync", "src\CSharpVesync\CSharpVesync.csproj", "{8FF829A3-B047-4475-BAF4-3A528B06469C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VesyncApiUnitTests", "tests\VesyncApiTests\VesyncApiUnitTests.csproj", "{1D8F2FAC-C05C-4E6B-AC5A-D932244E2855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VesyncApiIntegrationTests", "tests\VesyncApiIntegrationTests\VesyncApiIntegrationTests.csproj", "{A15DB679-CB21-45BB-8BFB-90E8EABC60B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{8FF829A3-B047-4475-BAF4-3A528B06469C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF829A3-B047-4475-BAF4-3A528B06469C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF829A3-B047-4475-BAF4-3A528B06469C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D8F2FAC-C05C-4E6B-AC5A-D932244E2855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D8F2FAC-C05C-4E6B-AC5A-D932244E2855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D8F2FAC-C05C-4E6B-AC5A-D932244E2855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D8F2FAC-C05C-4E6B-AC5A-D932244E2855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A15DB679-CB21-45BB-8BFB-90E8EABC60B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A15DB679-CB21-45BB-8BFB-90E8EABC60B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A15DB679-CB21-45BB-8BFB-90E8EABC60B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A15DB679-CB21-45BB-8BFB-90E8EABC60B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

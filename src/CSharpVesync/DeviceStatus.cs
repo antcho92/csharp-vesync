@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSharpVesync
 {
-    public class VesyncApiConfiguration
+    public enum DeviceStatus
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        off = 0,
+        on
     }
 }

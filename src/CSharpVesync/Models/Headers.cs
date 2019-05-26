@@ -1,13 +1,13 @@
+using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
 namespace CSharpVesync.Models
 {
-    [DataContract]
     public class Headers
     {
-        [DataMember(Name = "tk")]
+        [JsonProperty("tk")]
         public string Token { get; set; }
-        [DataMember(Name = "accountid")]
+        [JsonProperty("accountID")]
         public string AccountId { get; set; }
     }
 }

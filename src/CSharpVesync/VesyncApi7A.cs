@@ -1,10 +1,8 @@
-﻿using System;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using CSharpVesync.Models;
+using Newtonsoft.Json;
 
 namespace CSharpVesync
 {
@@ -14,50 +12,45 @@ namespace CSharpVesync
         {
         }
 
-        public async Task TurnOn(string id, string token, string accountId)
+        public async Task TurnOnOrOff(string id, string accountId, string token, bool TurnOn)
         {
-            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "/status/on"))
-                .WithHeaders(new Headers()
-                {
-                    Token = token,
-                    AccountId = accountId
-                })
-                .PutAsync(null);
+            await BaseUrl
+                .AppendPathSegments("/v1/wifi-switch-1.3/", id, "/status/", TurnOn ? "on" : "off")
+                .AddDefaultHeaders(accountId, token)
+                .PutAsync(null)
+                .ConfigureAwait(false);
         }
 
-        public async Task TurnOff(string id, string token, string accountId)
+        public async Task<ConfigurationsResponse> GetConfig(string id, string accountId, string token)
         {
-            await (BaseUrl.AppendPathSegments("/v1/wifi-switch-1.3/", id, "/status/on"))
-                .WithHeaders(new Headers()
-                {
-                    Token = token,
-                    AccountId = accountId
-                })
-                .PutAsync(null);
-        }
-
-        public async Task<ConfigurationsResponse> GetConfig(string id, string token, string accountId)
-        {
-            return await (BaseUrl.AppendPathSegments("/v1/device/", id, "configurations"))
-                .WithHeaders(new Headers()
-                {
-                    Token = token,
-                    AccountId = accountId
-                })
+            return await BaseUrl
+                .AppendPathSegments("/v1/device/", id, "configurations")
+                .AddDefaultHeaders(accountId, token)
                 .GetAsync()
-                .ReceiveJson<ConfigurationsResponse>();
+                .ReceiveJson<ConfigurationsResponse>()
+                .ConfigureAwait(false);
         }
 
-        public async Task<DetailResponse> GetDetail(string id, string token, string accountId)
+        public async Task<DetailResponse> GetDetailsAsync(string id, string accountId, string token)
         {
-            return await (BaseUrl.AppendPathSegments("/v1/device/", id, "detail"))
-                .WithHeaders(new Headers()
-                {
-                    Token = token,
-                    AccountId = accountId
-                })
+            var result = await (BaseUrl.AppendPathSegments("/v1/device/", id, "detail"))
+                .AddDefaultHeaders(accountId, token)
                 .GetAsync()
-                .ReceiveJson<DetailResponse>();
+                //.ReceiveJson<DetailResponse>()
+                .ReceiveString()
+                .ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<DetailResponse>(result);
+        }
+    }
+
+    public static class FlurlExtensions
+    {
+        public static IFlurlRequest AddDefaultHeaders(this Url url, string accountId, string token)
+        {
+            return url
+                .WithHeader(Constants.TokenHeader, token)
+                .WithHeader(Constants.AccountIdHeader, accountId);
         }
     }
 }

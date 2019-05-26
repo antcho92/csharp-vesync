@@ -6,16 +6,16 @@ namespace CSharpVesync.Models
     public class DetailResponse
     {
         [DataMember(Name = "deviceStatus")]
-        public string DeviceName { get; set; }
+        public string DeviceStatus { get; set; }
         [DataMember(Name = "deviceImg")]
         public string DeviceImg { get; set; }
         [DataMember(Name = "activeTime")]
-        public string ActiveTime { get; set; }
+        public int ActiveTime { get; set; }
         [DataMember(Name = "energy")]
-        public string Energy { get; set; }
+        public int Energy { get; set; }
         [DataMember(Name = "power")]
         public string Power { get; set; }
         [DataMember(Name = "voltage")]
-        public bool Voltage { get; set; }
+        public string Voltage { get; set; }
     }
 }

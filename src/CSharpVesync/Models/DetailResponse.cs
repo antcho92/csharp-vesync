@@ -12,7 +12,7 @@ namespace CSharpVesync.Models
         [DataMember(Name = "activeTime")]
         public int ActiveTime { get; set; }
         [DataMember(Name = "energy")]
-        public int Energy { get; set; }
+        public double Energy { get; set; }
         [DataMember(Name = "power")]
         public string Power { get; set; }
         [DataMember(Name = "voltage")]

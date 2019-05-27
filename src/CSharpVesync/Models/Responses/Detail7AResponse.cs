@@ -1,9 +1,9 @@
 using System.Runtime.Serialization;
 
-namespace CSharpVesync.Models
+namespace CSharpVesync.Models.Responses
 {
     [DataContract]
-    public class DetailResponse
+    public class Detail7AResponse
     {
         [DataMember(Name = "deviceStatus")]
         public string DeviceStatus { get; set; }

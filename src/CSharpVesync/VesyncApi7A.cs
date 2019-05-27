@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using CSharpVesync.Models;
 using Newtonsoft.Json;
+using CSharpVesync.Models.Responses;
 
 namespace CSharpVesync
 {
@@ -31,7 +31,7 @@ namespace CSharpVesync
                 .ConfigureAwait(false);
         }
 
-        public async Task<DetailResponse> GetDetailsAsync(string id, string accountId, string token)
+        public async Task<Detail7AResponse> GetDetailsAsync(string id, string accountId, string token)
         {
             var result = await BaseUrl
                 .AppendPathSegments("/v1/device/", id, "detail")
@@ -40,7 +40,7 @@ namespace CSharpVesync
                 .ReceiveString()
                 .ConfigureAwait(false);
 
-            return JsonConvert.DeserializeObject<DetailResponse>(result);
+            return JsonConvert.DeserializeObject<Detail7AResponse>(result);
         }
 
         public async Task<EnergyResponse7A> GetEnergy(string id, string accountId, string token, EnergyPeriod period)

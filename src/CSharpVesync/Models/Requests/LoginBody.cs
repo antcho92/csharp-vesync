@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-namespace CSharpVesync.Models
+namespace CSharpVesync.Models.Requests
 {
     [ExcludeFromCodeCoverage]
     public class LoginBody : BaseRequestBody

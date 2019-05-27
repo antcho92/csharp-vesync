@@ -1,4 +1,5 @@
-﻿using CSharpVesync.Models;
+﻿using CSharpVesync.Models.Requests;
+using CSharpVesync.Models.Responses;
 using Flurl;
 using Flurl.Http;
 using Newtonsoft.Json;

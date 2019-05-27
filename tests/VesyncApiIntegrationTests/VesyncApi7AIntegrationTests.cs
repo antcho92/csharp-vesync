@@ -1,9 +1,10 @@
-﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
+using CSharpVesync.Models.Responses;
 
 namespace CSharpVesync.VesyncApiIntegrationTests
 {
@@ -56,7 +57,7 @@ namespace CSharpVesync.VesyncApiIntegrationTests
         public async Task Vesync7AOutlet_TurnOnAndOff_SwitchesDeviceOnAndOff()
         {
             var devicesResponse = await Api.GetDevicesAsync(Account.Result.AccountId, Account.Result.Token);
-            var sut = devicesResponse.Result.List.FirstOrDefault(x => x.DeviceType.Equals(Constants.Outlet7ADeviceType, StringComparison.InvariantCultureIgnoreCase));
+            var sut = devicesResponse.Result.List.LastOrDefault(x => x.DeviceType.Equals(Constants.Outlet7ADeviceType, StringComparison.InvariantCultureIgnoreCase));
             var details = await Api7A.GetDetailsAsync(sut.Cid, Account.Result.AccountId, Account.Result.Token);
             var status = details.DeviceStatus;
 

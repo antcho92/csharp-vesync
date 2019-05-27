@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace CSharpVesync.Models
+namespace CSharpVesync.Models.Requests
 {
     public class RequestBody : BaseRequestBody
     {
@@ -8,5 +8,7 @@ namespace CSharpVesync.Models
         public string AccountId { get; set; }
         [DataMember(Name = "token")]
         public string Token { get; set; }
+        [DataMember(Name = "uuid")]
+        public string Uuid { get; set; }
     }
 }

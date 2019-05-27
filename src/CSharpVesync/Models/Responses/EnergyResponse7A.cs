@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace CSharpVesync
+namespace CSharpVesync.Models.Responses
 {
     [DataContract]
     public class EnergyResponse7A
@@ -16,5 +16,4 @@ namespace CSharpVesync
         [DataMember(Name = "totalEnergy")]
         public double TotalEnergy { get; set; }
     }
-
 }

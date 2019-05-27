@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpVesync.Models;
+using CSharpVesync.Models.Responses;
 
 namespace CSharpVesync.VesyncApiIntegrationTests
 {

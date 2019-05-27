@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace CSharpVesync.Models
+namespace CSharpVesync.Models.Responses
 {
     [DataContract]
     public class BaseResponse<T>

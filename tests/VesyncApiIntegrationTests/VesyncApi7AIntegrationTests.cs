@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace CSharpVesync.VesyncApiIntegrationTests
         }
 
         [TestMethod]
-        public async Task Vesync7AOutlet_GetConfig()
+        public async Task Vesync7AOutlet_GetConfig_ReturnsConfig()
         {
             var devicesResponse = await Api.GetDevicesAsync(Account.Result.AccountId, Account.Result.Token);
             var sut = devicesResponse.Result.List.FirstOrDefault(x => x.DeviceType.Equals(Constants.Outlet7ADeviceType, StringComparison.InvariantCultureIgnoreCase));
@@ -41,7 +42,7 @@ namespace CSharpVesync.VesyncApiIntegrationTests
         }
 
         [TestMethod]
-        public async Task Vesync7AOutlet_GetDetails()
+        public async Task Vesync7AOutlet_GetDetails_ReturnsDetails()
         {
             var devicesResponse = await Api.GetDevicesAsync(Account.Result.AccountId, Account.Result.Token);
             var sut = devicesResponse.Result.List.FirstOrDefault(x => x.DeviceType.Equals(Constants.Outlet7ADeviceType, StringComparison.InvariantCultureIgnoreCase));
@@ -52,7 +53,7 @@ namespace CSharpVesync.VesyncApiIntegrationTests
         }
 
         [TestMethod]
-        public async Task Vesync7AOutlet_TurnOnAndOff()
+        public async Task Vesync7AOutlet_TurnOnAndOff_SwitchesDeviceOnAndOff()
         {
             var devicesResponse = await Api.GetDevicesAsync(Account.Result.AccountId, Account.Result.Token);
             var sut = devicesResponse.Result.List.FirstOrDefault(x => x.DeviceType.Equals(Constants.Outlet7ADeviceType, StringComparison.InvariantCultureIgnoreCase));
@@ -69,6 +70,25 @@ namespace CSharpVesync.VesyncApiIntegrationTests
 
             status.Should().Be(status3);
             status.Should().NotBe(status2);
+        }
+
+        [TestMethod]
+        public async Task Vesync7AOutlet_GetEnergy_ReturnsEnergy()
+        {
+            var devicesResponse = await Api.GetDevicesAsync(Account.Result.AccountId, Account.Result.Token);
+            var sut = devicesResponse.Result.List.FirstOrDefault(x => x.DeviceType.Equals(Constants.Outlet7ADeviceType, StringComparison.InvariantCultureIgnoreCase));
+
+            var energyResults = new List<EnergyResponse7A>();
+            foreach (var period in (EnergyPeriod[])Enum.GetValues(typeof(EnergyPeriod)))
+            {
+                energyResults.Add(await Api7A.GetEnergy(sut.Cid, Account.Result.AccountId, Account.Result.Token, period));
+            }
+
+            foreach(var result in energyResults)
+            {
+                result.Should().NotBeNull();
+                result.Data.Should().NotBeNullOrEmpty();
+            }
         }
     }
 }

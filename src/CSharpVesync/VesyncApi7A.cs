@@ -33,14 +33,26 @@ namespace CSharpVesync
 
         public async Task<DetailResponse> GetDetailsAsync(string id, string accountId, string token)
         {
-            var result = await (BaseUrl.AppendPathSegments("/v1/device/", id, "detail"))
+            var result = await BaseUrl
+                .AppendPathSegments("/v1/device/", id, "detail")
                 .AddDefaultHeaders(accountId, token)
                 .GetAsync()
-                //.ReceiveJson<DetailResponse>()
                 .ReceiveString()
                 .ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<DetailResponse>(result);
+        }
+
+        public async Task<EnergyResponse7A> GetEnergy(string id, string accountId, string token, EnergyPeriod period)
+        {
+            var result = await BaseUrl
+                .AppendPathSegments("/v1/device/", id, "/energy/", period.ToString())
+                .AddDefaultHeaders(accountId, token)
+                .GetAsync()
+                .ReceiveString()
+                .ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<EnergyResponse7A>(result);
         }
     }
 

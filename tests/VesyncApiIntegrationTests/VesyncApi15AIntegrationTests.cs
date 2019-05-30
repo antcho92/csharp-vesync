@@ -24,7 +24,7 @@ namespace CSharpVesync.VesyncApiIntegrationTests
         public async Task TestInit()
         {
             await Initialize();
-            Api15A = new VesyncApi15A(Configuration);
+            Api15A = new VesyncApi15A();
         }
 
         [TestMethod]

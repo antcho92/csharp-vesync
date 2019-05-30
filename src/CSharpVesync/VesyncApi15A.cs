@@ -8,12 +8,8 @@ using Newtonsoft.Json;
 
 namespace CSharpVesync
 {
-    public class VesyncApi15A : VesyncApi
+    public class VesyncApi15A : VesyncApiBase
     {
-        public VesyncApi15A(VesyncApiConfiguration config) : base(config)
-        {
-        }
-
         public async Task<Detail15AResponse> GetDetailsAsync(string id, string accountId, string token)
         {
             var body = new DetailRequest

@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 
 namespace CSharpVesync
 {
-    public class VesyncApi
+    public class VesyncApi : VesyncApiBase
     {
-        protected const string BaseUrl = "https://smartapi.vesync.com";
         protected readonly VesyncApiConfiguration _config;
 
         public VesyncApi(VesyncApiConfiguration config)

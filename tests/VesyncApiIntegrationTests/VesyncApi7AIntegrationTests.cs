@@ -23,7 +23,7 @@ namespace CSharpVesync.VesyncApiIntegrationTests
         public async Task TestInit()
         {
             await Initialize();
-            Api7A = new VesyncApi7A(Configuration);
+            Api7A = new VesyncApi7A();
         }
 
         [TestMethod]

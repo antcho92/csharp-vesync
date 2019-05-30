@@ -6,12 +6,8 @@ using CSharpVesync.Models.Responses;
 
 namespace CSharpVesync
 {
-    public class VesyncApi7A : VesyncApi
+    public class VesyncApi7A : VesyncApiBase
     {
-        public VesyncApi7A(VesyncApiConfiguration config) : base(config)
-        {
-        }
-
         public async Task TurnOnOrOff(string id, string accountId, string token, bool TurnOn)
         {
             await BaseUrl

@@ -14,8 +14,28 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  buildConfiguration: 'Release'
+- name: buildConfiguration
+  value: 'Release'
+- group: csharp-vesync variables
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- task: FileTransform@1
+  displayName: Substitute test appesttings variables
+  inputs:
+    folderPath: '$(System.DefaultWorkingDirectory)/tests/VesyncApiIntegrationTests/'
+    fileType: 'json'
+    targetFiles: 'appsettings.json'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Run tests
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'

@@ -3,6 +3,8 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+name: $(Major).$(Minor).$(Patch)-$(rev:r).$(Build.SourceBranchName)
+
 trigger:
 - master
 - feature/*
@@ -17,6 +19,12 @@ variables:
 - name: buildConfiguration
   value: 'Release'
 - group: csharp-vesync variables
+- name: Major
+  value: '1'
+- name: Minor
+  value: '0'
+- name: Patch
+  value: '1'
 
 steps:
 - task: FileTransform@1
@@ -39,3 +47,35 @@ steps:
     command: test
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+
+- task: DotNetCoreCLI@2
+  displayName: Pack nuget pre-release
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'pack'
+    packagesToPack: 'src/CSharpVesync/CSharpVesync.csproj'
+    configuration: '$(buildConfiguration)'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'Build.BuildNumber'
+    includeSymbols: true
+
+- task: DotNetCoreCLI@2
+  displayName: Pack nuget release
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'pack'
+    packagesToPack: 'src/CSharpVesync/CSharpVesync.csproj'
+    configuration: '$(buildConfiguration)'
+    versioningScheme: 'off'
+    includeSymbols: true
+    majorVersion: '$(Major)'
+    minorVersion: '$(Minor)'
+    patchVersion: '$(Patch)'
+
+- task: DotNetCoreCLI@2
+  displayName: push nugets
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '/f96a5445-515b-4612-b7ca-dc39060e3bcd'

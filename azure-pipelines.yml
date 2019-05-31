@@ -66,7 +66,7 @@ steps:
     command: 'pack'
     packagesToPack: 'src/CSharpVesync/CSharpVesync.csproj'
     configuration: '$(buildConfiguration)'
-    versioningScheme: 'off'
+    versioningScheme: 'byBuildNumber'
     includeSymbols: true
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'

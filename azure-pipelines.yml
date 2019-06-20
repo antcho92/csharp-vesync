@@ -24,7 +24,7 @@ variables:
 - name: Minor
   value: '0'
 - name: Patch
-  value: '2'
+  value: '3'
 
 steps:
 - task: FileTransform@1

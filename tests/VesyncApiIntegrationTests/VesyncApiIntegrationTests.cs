@@ -32,7 +32,7 @@ namespace CSharpVesync.VesyncApiIntegrationTests
         }
 
         [TestMethod]
-        public async Task GetDevices_GivenValidCredentials_ReturnsTokenAndAccountId()
+        public async Task GetDevices_GivenValidCredentials_ReturnsDevices()
         {
             var devicesResponse = await Api.GetDevicesAsync(Account.Result.AccountId, Account.Result.Token);
             devicesResponse.Result.Should().NotBeNull();

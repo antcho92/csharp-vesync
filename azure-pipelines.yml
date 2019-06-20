@@ -57,7 +57,6 @@ steps:
     configuration: '$(buildConfiguration)'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'Build.BuildNumber'
-    includeSymbols: true
 
 - task: DotNetCoreCLI@2
   displayName: Pack nuget release
@@ -67,7 +66,6 @@ steps:
     packagesToPack: 'src/CSharpVesync/CSharpVesync.csproj'
     configuration: '$(buildConfiguration)'
     versioningScheme: 'byBuildNumber'
-    includeSymbols: true
     majorVersion: '$(Major)'
     minorVersion: '$(Minor)'
     patchVersion: '$(Patch)'

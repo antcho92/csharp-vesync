@@ -26,38 +26,38 @@ namespace CSharpVesync.Models.Responses
         [DataMember(Name = "gdprStatus")]
         public bool GdprStatus { get; set; }
         [DataMember(Name = "heightCm")]
-        public int HeightCm { get; set; }
+        public double HeightCm { get; set; }
         [DataMember(Name = "heightFt")]
-        public int HeightFt { get; set; }
+        public double HeightFt { get; set; }
         [DataMember(Name = "weightTargetKg")]
-        public int WeightTargetKg { get; set; }
+        public double WeightTargetKg { get; set; }
         [DataMember(Name = "weightTargetLb")]
-        public int WeightTargetLb { get; set; }
+        public double WeightTargetLb { get; set; }
         [DataMember(Name = "weightTargetSt")]
-        public int WeightTargetSt { get; set; }
+        public double WeightTargetSt { get; set; }
         [DataMember(Name = "weightUnit")]
         public string WeightUnit { get; set; }
         [DataMember(Name = "heightUnit")]
         public string HeightUnit { get; set; }
         [DataMember(Name = "targetBfr")]
-        public int TargetBfr { get; set; }
+        public double TargetBfr { get; set; }
         [DataMember(Name = "displayFlag")]
         public object[] DisplayFlag { get; set; }
         [DataMember(Name = "real_weight_kg")]
-        public int RealWeightKg { get; set; }
+        public double RealWeightKg { get; set; }
         [DataMember(Name = "real_weight_lb")]
-        public int RealWeightLb { get; set; }
+        public double RealWeightLb { get; set; }
         [DataMember(Name = "real_weight_unit")]
         public string RealWeightUnit { get; set; }
         [DataMember(Name = "heart_rate_zones")]
-        public int HeartRateZones { get; set; }
+        public double HeartRateZones { get; set; }
         [DataMember(Name = "run_step_long_cm")]
-        public int RunStepLongCm { get; set; }
+        public double RunStepLongCm { get; set; }
         [DataMember(Name = "walk_step_long_cm")]
-        public int WalkStepLongCm { get; set; }
+        public double WalkStepLongCm { get; set; }
         [DataMember(Name = "step_target")]
-        public int StepTarget { get; set; }
+        public double StepTarget { get; set; }
         [DataMember(Name = "sleep_target_mins")]
-        public int SleepTargetMins { get; set; }
+        public double SleepTargetMins { get; set; }
     }
 }
